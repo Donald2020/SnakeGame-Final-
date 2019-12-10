@@ -1,32 +1,33 @@
 # Detravious Brinkley = DB
+#Donald's code = Donald Davis 
 
 ##### Start of DB #####
 from tkinter import*
 from random import randint
 import sys
 ##### End of DB #####
-
-# The purpose of defining all of these variable names is so that we could build the grid for the game.
+####Start of Donald's code#####
+#  Defined the variables so that we could build the grid for the game.
 grid = 90
 gridPixel = 10
 gridElement = 2 * gridPixel
 width = gridPixel * grid
 height = gridPixel * grid
 topHeight = -1 + height
-# The purpose of this is to so that we could size the objects in the game
+# Added this to determine the size of the objects in the game
 foodSizeScale = 1
 predatorSizefactor = 0.9
 foodSize = gridPixel * foodSizeScale
 predatorSize = gridPixel * predatorSizefactor
-# The purpose of this was so we could set the colors
+# Added this to set the colors
 boardgameColor = 'green'
 foodColor = 'orange'
 predatorColor = 'yellow'
-# this state's the shape's type in the snakeShape class
+# Added this to state's the shape's type in the snakeShape class
 predator = 'snake'
 obstacle = 'snakeFood'
 gamepieceSizes = {predator: predatorSize, obstacle: foodSize}
-# The puporsose of this is to set directional paths
+# Added this to set directional paths
 UP = 'Up'
 DOWN = 'Down'
 RIGHT = 'Right'
@@ -37,7 +38,7 @@ AXES = {UP: 'Vertical', DOWN: 'Vertical', RIGHT: 'Horizontal', LEFT: 'Horizontal
 # The purpose of this was to set the refresh time for motion in the game
 gamerefreshTime = 100
 
-
+#bg is short for "boardgame"
 class Master(Canvas):
     """this creates the gameboard, the snake, the snakeFood, and  keeps track of the score"""
     def __init__(self, boss=None):
@@ -61,7 +62,7 @@ class Master(Canvas):
             self.running = 1
 
     def clean(self):
-        """restarting the game"""
+        """this is what restarts the game"""
         if self.running == 1:
             self.current.stop()
             self.running = 0
@@ -70,14 +71,14 @@ class Master(Canvas):
                 block.delete()
 
     def redirect(self, event):
-        """taking keyboard inputs and moving the snake accordingly"""
+        """this is what takes in the keyboard inputs and moves the snake accordingly"""
         if 1 == self.running and \
                 event.keysym in AXES.keys() and\
                 AXES[event.keysym] != AXES[self.direction]:
             self.current.flag = 0
             self.direction = event.keysym
-            self.current = snakeMovement(self, event.keysym)  # a new instance at each turn to avoid confusion/tricking
-            self.current.begin()  # program gets tricked if the user presses two arrow keys really quickly
+            self.current = snakeMovement(self, event.keysym) 
+            self.current.begin()  
 
 
 class scoreTracker:
@@ -93,8 +94,8 @@ class scoreTracker:
 
     def reset(self):
         self.counter.set('0')
-
-
+#End of Donald's code
+#Start of DB code
 class snakeShape:
     """This is a template to make snakeFoods and snake body parts"""
     def __init__(self, can, a, b, kind):
@@ -112,12 +113,14 @@ class snakeShape:
 
     def delete(self):
         self.can.delete(self.ref)
+####End of DB code####
 
+####Start of Donald's code####
 
 class snakeFood(snakeShape):
     """snake food"""
     def __init__(self, can):
-        """the purpose of this is so that the snakeFoods only spawns randomly where there is no snake body part"""
+        """added this so that the snakeFoods only spawns randomly where there is no snake body part"""
         self.can = can
         p = int(grid/2 - 1)
         n, m = randint(0, p), randint(0, p)
@@ -133,7 +136,9 @@ class snakeBody(snakeShape):
     def __init__(self, can, a, y):
         super().__init__(can, a, y, predator)
 
+####End of Donald's code####
 
+####Start of DB####
 class snake:
     """ the snake keeps track of its body parts"""
     def __init__(self, can):
@@ -157,7 +162,7 @@ class snake:
             self.blocks[0].modify(a, b)
             self.blocks = self.blocks[1:] + [self.blocks[0]]
 
-##### Start of DB #####
+
 #function should stop snake at border and end the game
 #does not work properly.
     def outOfBounds(self):
@@ -171,7 +176,7 @@ class snake:
 ##### End of DB #####
 
 
-
+####Start of Donald's code####
 class snakeMovement:
     """this helps determine the snakes direction after it absorbs the object"""
     def __init__(self, can, direction):
@@ -180,17 +185,19 @@ class snakeMovement:
         self.direction = direction
 
     def begin(self):
-        """this start the motion"""
+        """this starts the motion"""
         if self.flag > 0:
             self.can.snake.move(DIRECTIONS[self.direction])
             self.can.after(gamerefreshTime, self.begin)
 
     def stop(self):
-        """stop the movement"""
+        """this stops the movement"""
         self.flag = 0
 
         if self.outOfBounds():
             return
+####End of Donald's code####
+
 
 ##### Start of DB #####
 root = Tk()
@@ -208,10 +215,12 @@ Button(buttons, text='Quit', padx=15, pady=15, command=root.destroy).grid()
 buttons.grid(column=0, row=0)
 ##### End of DB #####
 
+####Start of Donald's code####
 scoreboard = Frame(root, width=35, height=2*height/5)
 Label(scoreboard, text='Game Score').grid()
 Label(scoreboard, textvariable=game.score.counter).grid()
 scoreboard.grid(column=0, row=2)
+####End of Donald's code####
 
 
 
