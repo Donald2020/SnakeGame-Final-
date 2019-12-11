@@ -1,11 +1,9 @@
-# Detravious Brinkley = DB
-#Donald's code = Donald Davis 
 
-##### Start of DB #####
+#Donald's code* 
+
 from tkinter import*
 from random import randint
 import sys
-##### End of DB #####
 ####Start of Donald's code#####
 #  Defined the variables so that we could build the grid for the game.
 grid = 90
@@ -95,7 +93,7 @@ class scoreTracker:
     def reset(self):
         self.counter.set('0')
 #End of Donald's code
-#Start of DB code
+
 class snakeShape:
     """This is a template to make snakeFoods and snake body parts"""
     def __init__(self, can, a, b, kind):
@@ -113,7 +111,7 @@ class snakeShape:
 
     def delete(self):
         self.can.delete(self.ref)
-####End of DB code####
+
 
 ####Start of Donald's code####
 
@@ -138,7 +136,7 @@ class snakeBody(snakeShape):
 
 ####End of Donald's code####
 
-####Start of DB####
+
 class snake:
     """ the snake keeps track of its body parts"""
     def __init__(self, can):
@@ -173,7 +171,7 @@ class snake:
 #width, height, and topHeight from above
         if a == width and b == height and a == 0 and b == topHeight:
             exit(1)
-##### End of DB #####
+
 
 
 ####Start of Donald's code####
@@ -199,7 +197,7 @@ class snakeMovement:
 ####End of Donald's code####
 
 
-##### Start of DB #####
+
 root = Tk()
 root.title("Anaconda")
 
@@ -213,7 +211,7 @@ Button(buttons, text='Start', padx=15, pady=15, command=game.start).grid()
 #root.destroy is built in to tkinter
 Button(buttons, text='Quit', padx=15, pady=15, command=root.destroy).grid()
 buttons.grid(column=0, row=0)
-##### End of DB #####
+
 
 ####Start of Donald's code####
 scoreboard = Frame(root, width=35, height=2*height/5)
