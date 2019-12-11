@@ -63,7 +63,7 @@ class Master(Canvas):
             self.current = snakeMovement(self, RIGHT)
             self.current.begin()
             self.running = 1
-
+#Start of Nkem's code
     def tutorial(self):
     	"""This takes you to the tutorial page"""
     	if self.running == 0:
@@ -73,7 +73,7 @@ class Master(Canvas):
     		     text="Turtorial\n\n This is the snake game the rules are simiple:\n Rule #1: eat the food particles to score\n Rule #2: avoid eating yourself and hittig the boarder",
     		     fg = "red",
     		     font = "Times").pack()
-
+#End of Nkem's code
     def clean(self):
         """this is what restarts the game"""
         if self.running == 1:
