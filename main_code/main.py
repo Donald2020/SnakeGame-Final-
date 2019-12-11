@@ -60,6 +60,16 @@ class Master(Canvas):
             self.current = snakeMovement(self, RIGHT)
             self.current.begin()
             self.running = 1
+            
+     def tutorial(self):
+        """This takes you to the tutorial page"""
+        if self.running == 0:
+            self.configure(width=width, height=height, bg=tutorialpage)
+            root = tk.Tk()
+            tk.Label(root, 
+		     text="Turtorial\n\n This is the snake game the rules are simiple:\n Rule #1: eat the food particles to score\n Rule #2: avoid eating yourself and hittig the boarder",
+		     fg = "red",
+		     font = "Times").pack()
 
     def clean(self):
         """this is what restarts the game"""
@@ -208,6 +218,7 @@ game.grid(column=2, row=0, rowspan=6)
 root.bind("<Key>", game.redirect)
 
 buttons = Frame(root, width=40, height=6*height/10)
+Button(buttons, text='Tutorial', command=game.tutorial).grid()
 #game.start refers to start function above
 Button(buttons, text='Start', padx=15, pady=15, command=game.start).grid()
 #root.destroy is built in to tkinter
