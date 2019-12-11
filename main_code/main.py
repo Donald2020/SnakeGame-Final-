@@ -1,9 +1,10 @@
 # Detravious Brinkley = DB
-#Donald's code = Donald Davis 
+#Donald's code = Donald Davis
 
 ##### Start of DB #####
 from tkinter import*
 from random import randint
+import tkinter as tk
 import sys
 ##### End of DB #####
 ####Start of Donald's code#####
@@ -23,6 +24,8 @@ predatorSize = gridPixel * predatorSizefactor
 boardgameColor = 'green'
 foodColor = 'orange'
 predatorColor = 'yellow'
+startpage = 'yellow'
+tutorialpage = 'blue'
 # Added this to state's the shape's type in the snakeShape class
 predator = 'snake'
 obstacle = 'snakeFood'
@@ -60,16 +63,16 @@ class Master(Canvas):
             self.current = snakeMovement(self, RIGHT)
             self.current.begin()
             self.running = 1
-            
+
     def tutorial(self):
-	"""This takes you to the tutorial page"""
-	if self.running == 0:
-	    self.configure(width=width, height=height, bg=tutorialpage)
-	    root = tk.Tk()
-	    tk.Label(root, 
-		     text="Turtorial\n\n This is the snake game the rules are simiple:\n Rule #1: eat the food particles to score\n Rule #2: avoid eating yourself and hittig the boarder",
-		     fg = "red",
-		     font = "Times").pack()
+    	"""This takes you to the tutorial page"""
+    	if self.running == 0:
+    	    self.configure(width=width, height=height, bg=tutorialpage)
+    	    root = tk.Tk()
+    	    tk.Label(root,
+    		     text="Turtorial\n\n This is the snake game the rules are simiple:\n Rule #1: eat the food particles to score\n Rule #2: avoid eating yourself and hittig the boarder",
+    		     fg = "red",
+    		     font = "Times").pack()
 
     def clean(self):
         """this is what restarts the game"""
@@ -87,8 +90,8 @@ class Master(Canvas):
                 AXES[event.keysym] != AXES[self.direction]:
             self.current.flag = 0
             self.direction = event.keysym
-            self.current = snakeMovement(self, event.keysym) 
-            self.current.begin()  
+            self.current = snakeMovement(self, event.keysym)
+            self.current.begin()
 
 
 class scoreTracker:
@@ -105,7 +108,7 @@ class scoreTracker:
     def reset(self):
         self.counter.set('0')
 #End of Donald's code
-#Start of DB code
+##### Start of DB #####
 class snakeShape:
     """This is a template to make snakeFoods and snake body parts"""
     def __init__(self, can, a, b, kind):
@@ -148,7 +151,7 @@ class snakeBody(snakeShape):
 
 ####End of Donald's code####
 
-####Start of DB####
+##### Start of DB #####
 class snake:
     """ the snake keeps track of its body parts"""
     def __init__(self, can):
