@@ -70,9 +70,11 @@ class Master(Canvas):
 
     def redirect(self, event):
         """this is what takes in the keyboard inputs and moves the snake accordingly"""
-        if 1 == self.running and \
-                event.keysym in AXES.keys() and\
-                AXES[event.keysym] != AXES[self.direction]:
+        if (
+            self.running == 1
+            and event.keysym in AXES.keys()
+            and AXES[event.keysym] != AXES[self.direction]
+        ):
             self.current.flag = 0
             self.direction = event.keysym
             self.current = snakeMovement(self, event.keysym) 
